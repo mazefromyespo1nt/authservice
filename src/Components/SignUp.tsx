@@ -6,19 +6,21 @@ import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 type SomeComponentProps = RouteComponentProps;
+//FUNCIOM CON UN LLAMADO A UN API NO SE OCUPA
 const SignUp: FC<SomeComponentProps> = ({ history }) => {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
+       watch,
+        reset,
+      formState: { errors },
+      } = useForm();
   const submitData = (data: any) => {
     let params = {
       firstname: data.firstname,
-      lastname: data.lastname,
+      lastname: data.apedidos,
       email: data.email,
+      date: data.fecha,
       password: data.password,
       confirmpassword: data.cpassword,
     };
@@ -57,7 +59,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
             <div className="col-md-12">
               <div className="card-body">
                 <h3 className="card-title text-center text-secondary mt-3 mb-3">
-                  Sign Up Form
+                  Registro de personal
                 </h3>
                 <form
                   className="row"
@@ -66,13 +68,13 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                 >
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Firstname</label>
+                      <label className="form-label">Nombre</label>
                       <input
                         type="text"
                         className="form-control form-control-sm"
                         id="exampleFormControlInput1"
                         {...register("firstname", {
-                          required: "Firstname is required!",
+                          required: "El nombre es requerido!",
                         })}
                       />
                       {errors.firstname && (
@@ -82,15 +84,16 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       )}
                     </div>
                   </div>
+                  
                   <div className="col-md-6">
                     <div className="">
-                      <label className="form-label">Lastname</label>
+                      <label className="form-label">Apeidos</label>
                       <input
                         type="text"
                         className="form-control form-control-sm"
                         id="exampleFormControlInput2"
-                        {...register("lastname", {
-                          required: "Lastname is required!",
+                        {...register("apeidos", {
+                          required: "Tu apeido es requerido!", 
                         })}
                       />
                       {errors.lastname && (
@@ -107,7 +110,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       type="email"
                       className="form-control form-control-sm"
                       id="exampleFormControlInput3"
-                      {...register("email", { required: "Email is required!" })}
+                      {...register("email", { required: "Es requerido!" })}
                     />
                     {errors.email && (
                       <p className="text-danger" style={{ fontSize: 14 }}>
@@ -115,14 +118,33 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       </p>
                     )}
                   </div>
+                  <div className="col-md-6">
+                    <div className="">
+                      <label className="form-label">Fecha de nacimiento</label>
+                      <input
+                        type="date"
+                        className="form-control form-control-sm"
+                        id="exampleFormControlInput1"
+                        {...register("fecha", {
+                          required: "Fecha es requerida!",
+                        })}
+                      />
+                      {errors.firstname && (
+                        <p className="text-danger" style={{ fontSize: 14 }}>
+                          {errors.firstname.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="">
-                    <label className="form-label">Password</label>
+                    <label className="form-label">Contraseña</label>
                     <input
                       type="password"
                       className="form-control form-control-sm"
                       id="exampleFormControlInput5"
                       {...register("password", {
-                        required: "Password is required!",
+                        required: "La contraseña es requerida",
                       })}
                     />
                     {errors.password && (
@@ -132,13 +154,13 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                     )}
                   </div>
                   <div className="">
-                    <label className="form-label">Confirm Password</label>
+                    <label className="form-label">Confirmar contraseña</label>
                     <input
                       type="password"
                       className="form-control form-control-sm"
                       id="exampleFormControlInput6"
                       {...register("cpassword", {
-                        required: "Confirm Password is required",
+                        required: "cofirme su contrasña",
 
                         validate: (value) =>
                           value === watch("password") ||
@@ -159,7 +181,7 @@ const SignUp: FC<SomeComponentProps> = ({ history }) => {
                       Submit
                     </button>
                     <p className="card-text">
-                      Already have an account?{" "}
+                      Regresar al{" "}
                       <Link style={{ textDecoration: "none" }} to={"/login"}>
                         Log In
                       </Link>

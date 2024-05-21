@@ -8,3 +8,8 @@
     border-radius: 30px;
     cursor: pointer;
 }
+
+.butt{
+    border-style: none;
+    background-color: white;
+}
