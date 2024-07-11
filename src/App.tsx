@@ -7,14 +7,39 @@ import RestrictedRoute from "./Auth/RestrictedRoute";
 import PrivateRoute from "./Auth/PrivateRoute";
 import Home from "./Components/Home";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import dash1 from "./Components/vitasdash/dash1";
+import dash2 from "./Components/vitasdash/dash2";
+import dash3 from "./Components/vitasdash/dash3";
+import { ListUserProvider } from "./context/ListUsersContext";
+import { MenuProvider } from "./context/contextmove";
+import { UsuariosProvider } from "./context/dashtabla/UsersTableContext";
+import { UsersUpdateProvider } from "./context/dashtabla/UserUpdateContext";
+import { UserDeleteProvider } from "./context/dashtabla/userDeleteContext";
+
 function App() {
   return (
+    //rutas rapidas de las vistas 
       <BrowserRouter>
+        <ListUserProvider>
       <Switch>
-        <PrivateRoute exact path="/" component={Home}/>
+      
+      <UsersUpdateProvider>
+      <UserDeleteProvider>
+       <UsuariosProvider>
+        <MenuProvider>     
+        <PrivateRoute exact path="/" component={Home}/> 
         <RestrictedRoute exact path="/login" component={Login} />
         <Route exact path="/register" component={SignUp} />
-        </Switch>
+        <Route exact path="/vitasdash/dash1" component={dash1}/>
+        <Route exact path="/vitasdash/dash2" component={dash2}/>
+        <Route exact path="/vitasdash/dash3" component={dash3}/>        
+        </MenuProvider>
+        </UsuariosProvider>
+        </UserDeleteProvider>
+        </UsersUpdateProvider>
+       
+         </Switch> 
+    </ListUserProvider>
     </BrowserRouter>
   );
 }

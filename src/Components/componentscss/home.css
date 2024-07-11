@@ -1,0 +1,37 @@
+.butn
+{
+    color: white;
+    background: cornflowerblue;
+    padding: 10px 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.butt{
+    border-style: none;
+    background-color: white;
+}
+/* home.css */
+
+.offcanvas.offcanvas-start {
+  position: fixed;
+  left: -300px; /* Fuera de la vista inicialmente */
+  width: 350px; /* Ancho del menú */
+  transition: left 0.3s ease-in-out; /* Transición suave */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+  }
+  
+  .offcanvas.show {
+    left: 0;
+  }
+  
+  .menu-open {
+    transform: translateX(150px);
+    transition:  0.3s ease-in-out;
+  }
+
+  
